@@ -26,8 +26,30 @@ function hidePaymentTypeNotSelected(){
 }
 
 function showArticles(articles){
+    for(let i = 0; i < currentCategoriesArray.length; i++){
+        let category = currentCategoriesArray[i];
 
-}
+            htmlContentToAppend += `
+            <a href="category-info.html" class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="` + articles.imgSrc + `" alt="` + articles.description + `" class="img-thumbnail">
+                    </div>
+                    <div class="col">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h4 class="mb-1">`+ articles.name +`</h4>
+                            <small class="text-muted">` + articles.productCount + ` artículos</small>
+                        </div>
+                        <p class="mb-1">` + articles.description + `</p>
+                    </div>
+                </div>
+            </a>
+            `
+        }
+    
+        document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
+    }
+
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
