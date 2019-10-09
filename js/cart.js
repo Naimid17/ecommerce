@@ -27,7 +27,7 @@ function hidePaymentTypeNotSelected(){
 
 function showArticles(articles){
     for(let i = 0; i < currentCategoriesArray.length; i++){
-        let category = currentCategoriesArray[i];
+        let articles = currentCategoriesArray[i];
 
             htmlContentToAppend += `
             <a href="category-info.html" class="list-group-item list-group-item-action">
@@ -55,5 +55,9 @@ function showArticles(articles){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-
+    getJSONData(ART_INFO_URL).then(function(resultObj){
+        if (resultObj.status === "ok"){
+          
+        }
+    });
 });
