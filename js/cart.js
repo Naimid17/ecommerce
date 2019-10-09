@@ -26,24 +26,25 @@ function hidePaymentTypeNotSelected(){
 }
 
 function showArticles(articles){
-    for(let i = 0; i < currentCategoriesArray.length; i++){
-        let articles = currentCategoriesArray[i];
-
+    let htmlContentToAppend="";
+    for(let i = 0; i < articles.length; i++){
+        let article = articles[i];
+         
             htmlContentToAppend += `
             <a href="category-info.html" class="list-group-item list-group-item-action">
                 <div class="row">
                     <div class="col-3">
-                        <img src="` + articles.src + `" alt="` + articles.description + `" class="img-thumbnail">
+                        <img src="` + article.src + `" alt="` + article.name + `" class="img-thumbnail">
                     </div>
                     <div class="col">
                         <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">`+ articles.name +`</h4>
-                            <small class="text-muted">` + articles.unitCost + ` artículos</small>
+                            <h4 class="mb-1">`+ article.name +`</h4>
+                            <small class="text-muted">` + article.unitCost + ` artículos</small>
                         </div>
-                        <p class="mb-1">` + articles.count + `</p>
+                        <p class="mb-1">` + article.count + `</p>
                     </div>
                     </div>
-                    <p class="mb-1">` + articles.currency + `</p>
+                    <p class="mb-1">` + article.currency + `</p>
                 </div>
                 </div>
             </a>
