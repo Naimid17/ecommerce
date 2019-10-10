@@ -68,31 +68,6 @@
             <h4 class="mb-3">Información del producto</h4>
             <form class="needs-validation" id="sell-info">
               <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="productName">Nombre</label>
-                  <input type="text" class="form-control" id="productName" placeholder="" value="" >
-                  <div class="invalid-feedback">
-                    Ingresa un nombre
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-8 order-md-1">
-                    <label for="zip">Imágenes</label>
-                    <div class="needsclick dz-clickable" id="file-upload">
-                      <div class="dz-message needsclick">
-                        Arrastra tus fotos aquí<br>
-                      </div>
-                    </div>
-                </div>
-              </div>
-              <div class="row">
-                  <div class="col-md-12 mb-3">
-                      <label for="productDescription">Descripción</label>
-                      <textarea class="form-control" id="productDescription" rows="3"></textarea>
-                  </div>
-                </div>
-              <div class="row">
                 <div class="col-md-3 mb-3">
                   <label for="zip">Costo</label>
                   <input type="number" class="form-control" id="productCostInput" placeholder="" required="" value="0" min="0">
@@ -136,21 +111,59 @@
                       La cantidad es requerida.
                     </div>
                   </div>
-                </div>
+                 </div>
+                        <hr class="mb-4">
+                        <h5 class="mb-3">DIRECCIÓN DE ENVIO</h5>
+                        <div class="row">
+                       <div class="col-md-6 mb-3">
+                         <label for="productName">Calle</label>
+                          <input type="text" class="form-control" id="productName" placeholder="" value="" >
+                          <div class="invalid-feedback">
+                            Ingresa un nombre
+                            </div>
+                          </div>
+                        </div>
+                             <div class="row">
+                             <div class="col-md-6 mb-3">
+                               <label for="productName">Numero de puerta</label>
+                                  <input type="text" class="form-control" id="productName" placeholder="" value="" >
+                                <div class="invalid-feedback">
+                                   Ingresa un numero
+                               </div>
+                              </div>
+                            </div>
+                                  <div class="row">
+                                   <div class="col-md-6 mb-3">
+                                   <label for="productName">Esquina</label>
+                                   <input type="text" class="form-control" id="productName" placeholder="" value="" >
+                                   <div class="invalid-feedback">
+                                   Ingresa un nombre
+                            </div>
+                          </div>
+                        </div>
+                            <div class="row">
+                              <div class="col-md-6 mb-3">
+                                <label for="productName">Pais</label>
+                                <input type="text" class="form-control" id="productName" placeholder="" value="" >
+                                <div class="invalid-feedback">
+                                  Ingresa un nombre
+                                </div>
+                              </div>
+                            </div>
               <hr class="mb-4">
               <h5 class="mb-3">Tipo de envio</h5>
               <div class="d-block my-3">
                 <div class="custom-control custom-radio">
                   <input id="goldradio" name="publicationType" type="radio" class="custom-control-input" checked="" required="">
-                  <label class="custom-control-label" for="goldradio">Gold (13%)</label>
+                  <label class="custom-control-label" for="goldradio">Premium (15%)</label>
                 </div>
                 <div class="custom-control custom-radio">
                   <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" required="">
-                  <label class="custom-control-label" for="premiumradio">Premium (7%)</label>
+                  <label class="custom-control-label" for="premiumradio">Express (7%)</label>
                 </div>
                 <div class="custom-control custom-radio">
                   <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
-                  <label class="custom-control-label" for="standardradio">Estándar (3%)</label>
+                  <label class="custom-control-label" for="standardradio">Standard (5%)</label>
                 </div>
                 <div class="row">
                   <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Ver condiciones</button>
@@ -184,8 +197,7 @@
           </div>
         </div>
       </div>
-      
-      <div class="modal fade" tabindex="-1" role="dialog" id="contidionsModal">
+            <div class="modal fade" tabindex="-1" role="dialog" id="contidionsModal">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -197,18 +209,18 @@
             <div class="modal-body">
               <div class="container">
                   <div class="row">
-                      <h5 class="text-warning">Gold (13%)</h5>
-                      <p class="muted text-justify">Tu producto se verá de forma promocionada en portada, además de las condiciones de Premium y Estándar.</p>
+                      <h5 class="text-warning"> Premium (15%)</h5>
+                      <p class="muted text-justify">Recibiras tu producto te llegara entre 2 a 5 días.</p>
                   </div>
                   <hr>
                   <div class="row">
-                      <h5 class="text-primary">Stándar (7%)</h5>
-                      <p class="muted text-justify">Se mostrará el producto en los primeros lugares de resultados de búsqueda, así cómo cuando se ingrese a la categoría que pertenezca.</p>
+                      <h5 class="text-primary"> Express (7%)</h5>
+                      <p class="muted text-justify">Recibiras tu preoducto dentro de 5 a 8 días.</p>
                   </div>
                   <hr>
                   <div class="row">
-                      <h5 class="text-secondary">Estándar (3%)</h5>
-                      <p class="muted text-justify">El producto se listará en la categoría correspondiente, así como en los resultados de búsquedas que coincidan con las palabras claves en el nombre.</p>
+                      <h5 class="text-secondary"> Standard (5%)</h5>
+                      <p class="muted text-justify">Recibiras tu preoducto dentro de 12 a 15 días.</p>
                   </div>
               </div>
             </div>
