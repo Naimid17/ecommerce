@@ -1,5 +1,6 @@
-let productUnitCost = 0;
+let productunitCost = 0;
 let productCurrency = "";
+let productCount =0;
 let subtotal = 0;
 let shippingPercentage = 0.15;
 let total = 0;
@@ -10,14 +11,14 @@ let ERROR_MSG = "Ha habido un error :(, verifica qué pasó.";
 
 //Función que se utiliza para actualizar los costos de publicación
 function updateTotalCosts(){
-    let unitProductCostHTML = document.getElementById("costo");
-    let cantidadArticulosHTML= document.getElemantById ("cantidad")
+    let ProductunitCostHTML = document.getElementById("costo");
+    let productCountHTML= document.getElemantById ("cantidad")
     let totalCostHTML = document.getElementById("totalCostText");
 
     let unitCostToShow = MONEY_SYMBOL + productCost;
-    let totalCostToShow = MONEY_SYMBOL + (Math.round(productCost * cantidadArticulosHTML) );
+    let totalCostToShow = MONEY_SYMBOL + (Math.round(productCost * productCountHTML) );
 
-    unitProductCostHTML.innerHTML = unitCostToShow;
+    ProductunitCostHTML.innerHTML = unitCostToShow;
     
     totalCostHTML.innerHTML = totalCostToShow;
 }
