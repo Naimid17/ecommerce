@@ -1,4 +1,4 @@
-let productunitCost = 0;
+let productUnitCost = 0;
 let productCurrency = "";
 let productCount =0;
 let subtotal = 0;
@@ -11,15 +11,16 @@ let ERROR_MSG = "Ha habido un error :(, verifica qué pasó.";
 
 //Función que se utiliza para actualizar los costos de publicación
 function updateTotalCosts(){
-    let ProductunitCostHTML = document.getElementById("costo");
-    let productCountHTML= document.getElemantById ("cantidad")
+    let unitProductCostHTML = document.getElementById("productCostText");
+    let productCountHTML = document.getElementById("CountText");
     let totalCostHTML = document.getElementById("totalCostText");
 
     let unitCostToShow = MONEY_SYMBOL + productCost;
-    let totalCostToShow = MONEY_SYMBOL + (Math.round(productCost * productCountHTML) );
+    let countToShow = productCount
+    let totalCostToShow = MONEY_SYMBOL + (productCost * productCount);
 
-    ProductunitCostHTML.innerHTML = unitCostToShow;
-    
+    unitProductCostHTML.innerHTML = unitCostToShow;
+    ProductCountHTML.innerHTML = countToShow;
     totalCostHTML.innerHTML = totalCostToShow;
 }
 
@@ -49,9 +50,9 @@ function showArticles(articles){
                     <div class="col">
                         <div class="d-flex w-100 justify-content-between">
                             <h4 class="mb-1">`+ article.name +`</h4>
-                            <small class="text-muted" id="cantidad>` + article.count + ` artículos</small>
+                            <small class="text-muted" >` + article.count + ` artículos</small>
                         </div>
-                        <p class="mb-1" id="costo">` + article.unitCost +" "+ article.currency +  `</p>
+                        <p class="mb-1" >` + article.unitCost +" "+ article.currency +  `</p>
                  </div>
                 </div>
             </a>
