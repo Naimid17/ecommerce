@@ -11,21 +11,32 @@ let ERROR_MSG = "Ha habido un error :(, verifica qué pasó.";
 
 //Función que se utiliza para actualizar los costos de publicación
 function updateTotalCosts(){
+   
+}
+
+function updateTotalCosts(art, cantidad, cost){
+
+    let article = document.getElementById(art);
+    if(article != null){
+        article.HTML.innerHTML = updateSubtotal(cost, cantidad);
+    }
+    /*
     let unitProductCostHTML = document.getElementById("productCostText");
-    let productCountHTML = document.getElementById("CountText");
+    let comissionCostHTML = document.getElementById("comissionText");
     let totalCostHTML = document.getElementById("totalCostText");
 
     let unitCostToShow = MONEY_SYMBOL + productCost;
-    let countToShow = productCount
-    let totalCostToShow = MONEY_SYMBOL + (productCost * productCount);
+    let comissionToShow = Math.round((comissionPercentage * 100)) + PERCENTAGE_SYMBOL;
+    let totalCostToShow = MONEY_SYMBOL + (Math.round(productCost * comissionPercentage * 100) / 100);
 
     unitProductCostHTML.innerHTML = unitCostToShow;
-    ProductCountHTML.innerHTML = countToShow;
+    comissionCostHTML.innerHTML = comissionToShow;
     totalCostHTML.innerHTML = totalCostToShow;
+    */
 }
 
-function updateSubtotal(){
-
+function updateSubtotal(cost,cantidad){
+    return cost*cantidad;
 }
 
 function showPaymentTypeNotSelected(){
@@ -37,11 +48,33 @@ function hidePaymentTypeNotSelected(){
 }
 
 function showArticles(articles){
-    let htmlContentToAppend="";
+    let htmlContentToAppend=`<form id="form1">
+    <div class="divTable">
+        <div class="headRow">
+            <div class="divCell" align="center">Imagen</div>
+            <div class="divCell">Nombre</div>
+            <div class="divCell">Costo</div>
+            <div class="divCell">Cantidad</div>
+            <div class="divCell">Subtotal</div>
+        </div></br>`;
     for(let i = 0; i < articles.length; i++){
         let article = articles[i];
-         
-            htmlContentToAppend += `
+        article.cantidad=0;
+
+        htmlContentToAppend += `
+        <div class="divRow">
+            <div class="divCell"><img src="` + article.src + `" alt="` + article.name + `" class="img-thumbnail"></div>
+            <div class="divCell"><p class="mb-1">`+ article.name +`</p></div>
+            <div class="divCell"><p class="mb-1" >` + article.unitCost +" "+ article.currency +  `</p></div>
+            <div class="divCell">
+                <input type="number" id="productCountInput" onclic="`+`" value="`+article.cantidad+ `" max= "`+ article.count + `" min="0">
+            </div>
+            <div class="divCell">
+                <p id="art`+ i +`" class="mb-1">`+ article.currency +" "+ updateSubtotal(article.unitCost,article.cantidad) +`</p>
+            </div>
+        </div>`
+
+        /*    htmlContentToAppend += `
             <a href="category-info.html" class="list-group-item list-group-item-action">
                 <div class="row">
                     <div class="col-3">
@@ -57,7 +90,11 @@ function showArticles(articles){
                 </div>
             </a>
             `
+        */
         }
+
+        htmlContentToAppend += `</div>
+                            </form>`;
     
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     }

@@ -134,3 +134,26 @@ a.custom-card:hover {
     text-align: center;
   }
 }
+
+
+
+.divTable{
+    display:  table;
+    width:auto;
+    background-color:white;
+    border:1px solid  #0f0f0f;
+    border-spacing:5px;
+}
+
+.divRow{
+    display:table-row;
+    width:auto;
+}
+
+.divCell{
+    float:left;
+    display:table-column;
+    width:210px;
+    background-color:white;
+}
+
