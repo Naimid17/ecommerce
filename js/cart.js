@@ -1,6 +1,6 @@
-let productUnitCost = 0;
-let productCurrency = "";
-let productCount =0;
+let articleunitCost = 0;
+let articleCurrency = "";
+let articleCount =0;
 let subtotal = 0;
 let shippingPercentage = 0.15;
 let total = 0;
@@ -12,40 +12,33 @@ let ERROR_MSG = "Ha habido un error :(, verifica qué pasó.";
 //Función que se utiliza para actualizar los costos de publicación
 function updateTotalCosts(){
    
-}
-
-function updateTotalCosts(art, cantidad, cost){
-
-    let article = document.getElementById(art);
-    if(article != null){
-        article.HTML.innerHTML = updateSubtotal(cost, cantidad);
-    }
-    /*
-    let unitProductCostHTML = document.getElementById("productCostText");
+   let articleunitCostHTML = document.getElementById("productCostText");
     let comissionCostHTML = document.getElementById("comissionText");
     let totalCostHTML = document.getElementById("totalCostText");
 
-    let unitCostToShow = MONEY_SYMBOL + productCost;
+    let unitCostToShow = MONEY_SYMBOL + articleCost;
     let comissionToShow = Math.round((comissionPercentage * 100)) + PERCENTAGE_SYMBOL;
-    let totalCostToShow = MONEY_SYMBOL + (Math.round(productCost * comissionPercentage * 100) / 100);
+    let totalCostToShow = MONEY_SYMBOL + (Math.round(articleunitCost * comissionPercentage * 100) / 100);
 
-    unitProductCostHTML.innerHTML = unitCostToShow;
-    comissionCostHTML.innerHTML = comissionToShow;
-    totalCostHTML.innerHTML = totalCostToShow;
-    */
+articleunitCostHTML.innerHTML = unitCostToShow;
+comissionCostHTML.innerHTML = comissionToShow;
+totalCostHTML.innerHTML = totalCostToShow;
+    
 }
 
 function updateSubtotal(cost,cantidad){
     return cost*cantidad;
 }
-
-function showPaymentTypeNotSelected(){
-
-}
-
-function hidePaymentTypeNotSelected(){
-
-}
+document.addEventListener("DOMContentLoaded", function(e){
+    document.getElementById("articleCountInput").addEventListener("change", function(){
+        articleCount = this.value;
+        updateSubtotal();
+    });
+    document.getElementById("articleCostInput").addEventListener("change", function(){
+       articleunitCost = this.value;
+        updateSubtotal();
+    });
+});
 
 function showArticles(articles){
     let htmlContentToAppend=`<form id="form1">
@@ -65,9 +58,9 @@ function showArticles(articles){
         <div class="divRow">
             <div class="divCell"><img src="` + article.src + `" alt="` + article.name + `" class="img-width="60" height="70" img-"center"></div>
             <div class="divCell"><p class="mb-1">`+ article.name +`</p></div>
-            <div class="divCell"><p class="mb-1" >` + article.currency +" "+ article.unitCost +  `</p></div>
+            <div class="divCell"><p class="mb-1" id="articleCostInput">` + article.currency +" "+ article.unitCost +  `</p></div>
             <div class="divCell">
-                <input type="number" id="productCountInput" onclic="`+`" value="`+article.cantidad+ `" max= "`+ article.count + `" min="0">
+                <input type="number" id="articleCountInput" onclic="`+`" value="`+article.cantidad+ `" max= "`+ article.count + `" min="0">
             </div>
             <div class="divCell">
                 <p id="art`+ i +`" class="mb-1">`+ article.currency +" "+ updateSubtotal(article.unitCost,article.cantidad) +`</p>
