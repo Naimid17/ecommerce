@@ -51,7 +51,7 @@ function showArticles(articles){
     let htmlContentToAppend=`<form id="form1">
     <div class="divTable">
         <div class="headRow">
-            <div class="divCell" align="center">Imagen</div>
+            <div class="divCell">Imagen</div>
             <div class="divCell">Nombre</div>
             <div class="divCell">Costo</div>
             <div class="divCell">Cantidad</div>
@@ -63,9 +63,9 @@ function showArticles(articles){
 
         htmlContentToAppend += `
         <div class="divRow">
-            <div class="divCell"><img src="` + article.src + `" alt="` + article.name + `" class="img-thumbnail"></div>
+            <div class="divCell"><img src="` + article.src + `" alt="` + article.name + `" class="img-width="60" height="70" img-"center"></div>
             <div class="divCell"><p class="mb-1">`+ article.name +`</p></div>
-            <div class="divCell"><p class="mb-1" >` + article.unitCost +" "+ article.currency +  `</p></div>
+            <div class="divCell"><p class="mb-1" >` + article.currency +" "+ article.unitCost +  `</p></div>
             <div class="divCell">
                 <input type="number" id="productCountInput" onclic="`+`" value="`+article.cantidad+ `" max= "`+ article.count + `" min="0">
             </div>
