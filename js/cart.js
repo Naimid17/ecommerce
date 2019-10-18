@@ -12,7 +12,7 @@ let ERROR_MSG = "Ha habido un error :(, verifica qué pasó.";
 //Función que se utiliza para actualizar los costos de publicación
 function updateTotalCosts(){
    
-   let articleunitCostHTML = document.getElementById("productCostText");
+  /* let articleunitCostHTML = document.getElementById("productCostText");
     let comissionCostHTML = document.getElementById("comissionText");
     let totalCostHTML = document.getElementById("totalCostText");
 
@@ -22,23 +22,17 @@ function updateTotalCosts(){
 
 articleunitCostHTML.innerHTML = unitCostToShow;
 comissionCostHTML.innerHTML = comissionToShow;
-totalCostHTML.innerHTML = totalCostToShow;
+totalCostHTML.innerHTML = totalCostToShow;*/
     
 }
 
-function updateSubtotal(cost,cantidad){
-    return cost*cantidad;
+function updateSubtotal(){
+    articleCount =  document.getElementById("articleCountInput").value;
+    var subtotal = articleunitCost*articleCount;
+
+    document.getElementById("subtotal").innerHTML = subtotal;
+
 }
-document.addEventListener("DOMContentLoaded", function(e){
-    document.getElementById("articleCountInput").addEventListener("change", function(){
-        articleCount = this.value;
-        updateSubtotal();
-    });
-    document.getElementById("articleCostInput").addEventListener("change", function(){
-       articleunitCost = this.value;
-        updateSubtotal();
-    });
-});
 
 function showArticles(articles){
     let htmlContentToAppend=`<form id="form1">
@@ -52,7 +46,7 @@ function showArticles(articles){
         </div></br>`;
     for(let i = 0; i < articles.length; i++){
         let article = articles[i];
-        article.cantidad=0;
+        
 
         htmlContentToAppend += `
         <div class="divRow">
@@ -60,10 +54,10 @@ function showArticles(articles){
             <div class="divCell"><p class="mb-1">`+ article.name +`</p></div>
             <div class="divCell"><p class="mb-1" id="articleCostInput">` + article.currency +" "+ article.unitCost +  `</p></div>
             <div class="divCell">
-                <input type="number" id="articleCountInput" onclic="`+`" value="`+article.cantidad+ `" max= "`+ article.count + `" min="0">
+                <input type="number" id="articleCountInput" onclick="updateSubtotal()" value="" min="0" >
             </div>
             <div class="divCell">
-                <p id="art`+ i +`" class="mb-1">`+ article.currency +" "+ updateSubtotal(article.unitCost,article.cantidad) +`</p>
+                <p id="art`+ i +`" class="mb-1">`+ article.currency +` <a id=subtotal></a></p>
             </div>
         </div>`
 
@@ -100,7 +94,14 @@ document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(CART_INFO_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             showArticles(resultObj.data.articles)
-          
+          articleunitCost=resultObj.data.articles[0].unitCost;
         }
     });
 });
+
+//document.addEventListener("DOMContentLoaded", function(e){
+  //  document.getElementById("articleCountInput").addEventListener("change", function(){
+    //    articleCount = this.value;
+      //  updateSubtotal();
+    //});
+//});
