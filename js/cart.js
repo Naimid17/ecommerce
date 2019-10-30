@@ -26,13 +26,9 @@ function updateTotalCosts(){
     
 }
    document.addEventListener("DOMContentLoaded", function(e){
-    document.getElementById("articlesubtotal").addEventListener("change", function(){
-        articlesubtotal = this.value;
-        updateTotalCost();
-    });
-
+ 
     document.getElementById("articleCostInput").addEventListener("change", function(){
-        articleunitCost = this.value;
+        articleunitsubtotal = this.value;
         updateTotalCost();
     });
 
@@ -55,10 +51,10 @@ function updateTotalCosts(){
             
 function updateSubtotal(){
     articleCount =  document.getElementById("articleCountInput").value;
-    var subtotal = articleunitCost*articleCount;
+    subtotal = articleunitCost*articleCount;
     
+    document.getElementById("subtotalText").innerHTML = subtotal;
     document.getElementById("subtotal").innerHTML = subtotal;
-    document.getElementById("sobtotalText").innerHTML = subtotal;
     document.getElementById("articleCostText").innerHTML = subtotal;
 
 }
@@ -90,10 +86,10 @@ function showArticles(articles){
             <div class="divCell"><p class="mb-1">`+ article.name +`</p></div>
             <div class="divCell"><p class="mb-1" id="articleCostInput">` + article.currency +" "+ article.unitCost +  `</p></div>
             <div class="divCell">
-                <input type="number" id="articleCountInput" onclick="updateSubtotal()" value="" min="0"  >
+                <input type="number" id="articleCountInput" onclick="updateSubtotal()" value="`+ article.count +`" min="1"  >
             </div>
             <div class="divCell">
-                <p  class="mb-1">`+ article.currency +` <a id=subtotal></a></p>
+                <p  class="mb-1">`+ article.currency +`<a id=subtotal></a></p>
             </div>
         </div>`
 
@@ -103,6 +99,7 @@ function showArticles(articles){
                             </form>`;
     
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
+    
     }
 
 
@@ -112,7 +109,7 @@ function showArticles(articles){
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(CART_INFO_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
-            showArticles(resultObj.data.articles)
+            showArticles(resultObj.data.articles);
           articleunitCost=resultObj.data.articles[0].unitCost;
         
 
