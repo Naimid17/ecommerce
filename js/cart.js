@@ -25,10 +25,12 @@ function updateTotalCosts(){
     totalCostHTML.innerHTML = totalCostToShow;
     
 }
-   document.addEventListener("DOMContentLoaded", function(e){
+
+document.addEventListener("DOMContentLoaded", function(e){
  
     document.getElementById("articleCostInput").addEventListener("change", function(){
-        articleunitsubtotal = this.value;
+        subtotal = this.value;
+        updateSubtotal()
         updateTotalCost();
     });
 
