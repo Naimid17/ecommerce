@@ -16,40 +16,15 @@ function updateTotalCosts(){
     let comissionCostHTML = document.getElementById("comissionText");
     let totalCostHTML = document.getElementById("totalCostText");
 
-    let subtotalToShow = MONEY_SYMBOL + subtotal;
-    let comissionToShow = Math.round((comissionPercentage * 100)) + PERCENTAGE_SYMBOL;
-    let totalCostToShow = MONEY_SYMBOL + (Math.round(articleCost * comissionPercentage * 100) / 100);
+    let subtotalToShow = subtotal;
+    let comissionToShow = Math.round(((shippingPercentage * 100)*subtotal )/100);
+    let totalCostToShow =(Math.round(((shippingPercentage * 100)*subtotal)/100)+ subtotal);
 
     articlesubtotalHTML.innerHTML = subtotalToShow;
     comissionCostHTML.innerHTML = comissionToShow;
     totalCostHTML.innerHTML = totalCostToShow;
     
 }
-
-document.addEventListener("DOMContentLoaded", function(e){
- 
-    document.getElementById("articleCostInput").addEventListener("change", function(){
-        subtotal = this.value;
-        updateSubtotal()
-        updateTotalCost();
-    });
-
-    document.getElementById("premiumradio").addEventListener("change", function(){
-        comissionPercentage = 0.15;
-        updateTotalCost();
-    });
-    
-    document.getElementById("expressradio").addEventListener("change", function(){
-        comissionPercentage = 0.07;
-        updateTotalCost();
-    });
-
-    document.getElementById("standardradio").addEventListener("change", function(){
-        comissionPercentage = 0.05;
-        updateTotalCost();
-    });
-});
-
             
 function updateSubtotal(){
     articleCount =  document.getElementById("articleCountInput").value;
@@ -57,17 +32,21 @@ function updateSubtotal(){
     
     document.getElementById("subtotalText").innerHTML = subtotal;
     document.getElementById("subtotal").innerHTML = subtotal;
-    document.getElementById("articleCostText").innerHTML = subtotal;
+
+}
+function showPaymentTypeNotSelected(){
+
+
 
 }
 
 function hidePaymentTypeNotSelected(){
+    
 
 }
 
-function showProducts(article){
 
-}
+
 function showArticles(articles){
     let htmlContentToAppend=`<form id="form1">
     <div class="divTable">
@@ -88,10 +67,10 @@ function showArticles(articles){
             <div class="divCell"><p class="mb-1">`+ article.name +`</p></div>
             <div class="divCell"><p class="mb-1" id="articleCostInput">` + article.currency +" "+ article.unitCost +  `</p></div>
             <div class="divCell">
-                <input type="number" id="articleCountInput" onclick="updateSubtotal()" value="`+ article.count +`" min="1"  >
+                <input type="number" id="articleCountInput" onclick="updateSubtotal()" value="`+article.count+`" min="1">
             </div>
             <div class="divCell">
-                <p  class="mb-1">`+ article.currency +`<a id=subtotal></a></p>
+                <p  class="mb-1">`+ article.currency +" "+`<a id=subtotal></a></p>
             </div>
         </div>`
 
@@ -101,7 +80,9 @@ function showArticles(articles){
                             </form>`;
     
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
-    
+
+        updateSubtotal();
+        
     }
 
 
@@ -112,16 +93,30 @@ document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(CART_INFO_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             showArticles(resultObj.data.articles);
-          articleunitCost=resultObj.data.articles[0].unitCost;
-        
-
+            articleunitCost=resultObj.data.articles[0].unitCost;
         }
+
+        document.getElementById("articleCostInput").addEventListener("change", function(){
+            subtotal = this.value;
+            updateSubtotal();
+            updateTotalCosts();
+        });
+    
+        document.getElementById("premiumradio").addEventListener("change", function(){
+            shippingPercentage = 0.15;
+            updateTotalCosts();
+        });
+        
+        document.getElementById("expressradio").addEventListener("change", function(){
+            shippingPercentage = 0.07;
+            updateTotalCosts();
+        });
+    
+        document.getElementById("standardradio").addEventListener("change", function(){
+            shippingPercentage = 0.05;
+            updateTotalCosts();
+        });
+        updateSubtotal();
     });
 });
 
-//document.addEventListener("DOMContentLoaded", function(e){
-  //  document.getElementById("articleCountInput").addEventListener("change", function(){
-    //    articleCount = this.value;
-      //  updateSubtotal();
-//});
-//})
