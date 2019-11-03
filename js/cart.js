@@ -15,10 +15,10 @@ function updateTotalCosts(){
     let articlesubtotalHTML = document.getElementById("subtotalText");
     let comissionCostHTML = document.getElementById("comissionText");
     let totalCostHTML = document.getElementById("totalCostText");
-
-    let subtotalToShow = subtotal;
-    let comissionToShow = Math.round(((shippingPercentage * 100)*subtotal )/100);
-    let totalCostToShow =(Math.round(((shippingPercentage * 100)*subtotal)/100)+ subtotal);
+ 
+    let subtotalToShow =  subtotal;
+    let comissionToShow =  Math.round(((shippingPercentage * 100)*subtotal )/100);
+    let totalCostToShow = comissionToShow + subtotal;
 
     articlesubtotalHTML.innerHTML = subtotalToShow;
     comissionCostHTML.innerHTML = comissionToShow;
@@ -34,11 +34,25 @@ function updateSubtotal(){
     document.getElementById("subtotal").innerHTML = subtotal;
 
 }
-function showPaymentTypeNotSelected(){
+/*function showPaymentTypeNotSelected(){
+  let CreditoHTML =  document.getElementById("creditCardPaymentRadio")
+  let TransferenciaHTML = document.getElementById ("bankingRadio")
+
+  CreditoHTML.innerHTML = Credito;
+  TransferenciaHTML.innerHTML = Transferencia;}
+  
+  function seleccionado (){
+      
+    if Credito === "Tarjeta de crédito";
+
+  if Transferencia === "Transferencia bancaria";
+
+  else return "No ha seleccionado metodo de pago";}*/
+
+  
 
 
 
-}
 
 function hidePaymentTypeNotSelected(){
     
@@ -118,5 +132,18 @@ document.addEventListener("DOMContentLoaded", function(e){
         });
         updateSubtotal();
     });
+
+   /* document.getElementById("creditCardPaymentRadio").addEventListener("change", function(){
+        Credito  = this.value;
+        showPaymentTypeNotSelected();
+    });
+    document.getElementById("bankingRadio").addEventListener("change", function(){
+        Transferncia = this.value;
+        showPaymentTypeNotSelected();
+    });
+   // document.getElementById("articleCostInput").addEventListener("change", function(){
+     //   subtotal = this.value;
+   }); */
+
 });
 
