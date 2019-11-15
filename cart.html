@@ -70,7 +70,7 @@
               <h5 class="mb-3">Tipo de envio</h5>
               <div class="d-block my-3">
                 <div class="custom-control custom-radio">
-                  <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" checked="" required="">
+                  <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" checked required>
                   <label class="custom-control-label" for="premiumradio">Premium (15%). Entrega de 2 a 5 días.</label>
                 </div>
                 <div class="custom-control custom-radio">
@@ -87,7 +87,7 @@
                         <div class="row">
                        <div class="col-md-6 mb-3">
                          <label for="productName">Calle</label>
-                          <input type="text" class="form-control" id="productName" placeholder="" value="" >
+                          <input type="text" class="form-control" id="streetName" placeholder="" required="" value="" >
                           <div class="invalid-feedback">
                             Ingresa un nombre
                             </div>
@@ -96,7 +96,7 @@
                              <div class="row">
                              <div class="col-md-9 mb-3">
                                <label for="productName">N° de puerta</label>
-                                  <input type="number" class="form-control" id="productName" placeholder="" value="" >
+                                  <input type="number" class="form-control" id="Npuerta" placeholder="" required="" value="" >
                                 <div class="invalid-feedback">
                                    Ingresa un numero
                                </div>
@@ -106,7 +106,7 @@
                               <div class="row">
                                    <div class="col-md-6 mb-3">
                                    <label for="productName">Esquina</label>
-                                   <input type="text" class="form-control" id="productName" placeholder="" value="" >
+                                   <input type="text" class="form-control" id="calleNombre" placeholder="" required="" value="" >
                                    <div class="invalid-feedback">
                                    Ingresa un nombre
                             </div>
@@ -115,7 +115,7 @@
                             <div class="row">
                               <div class="col-md-6 mb-3">
                                 <label for="productName">Pais</label>
-                                <input type="text" class="form-control" id="productName" placeholder="" value="" >
+                                <input type="text" class="form-control" id="Pais" placeholder="" required="" value="" >
                                 <div class="invalid-feedback">
                                   Ingresa un nombre
                                 </div>
@@ -146,18 +146,19 @@
                   </li>
                 </ul>
                 <h5 class="mb-3">Tipo de pago</h5>
-                <h6 class="mb-3">No ha seleccionado</h7>
-                     <button type="button" id="Metododepago" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Formas de pago</button>
+                <span id="pago"></span>
+                  <button type="button" id="Metododepago" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Formas de pago</button>
                    </div>
                   </div>
                   <div class="row">
                     <hr class="mb-4">
-               <button class="btn btn-primary btn-lg" type="submit" >Comprar</button>
+               <button class="btn btn-primary btn-lg" id="buyBtn">Comprar</button>
              </form>
           </div>
         </div>
       </div>
       </div>
+
             <div class="modal fade" tabindex="-1" role="dialog" id="contidionsModal">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -171,7 +172,7 @@
                     <div class="container">
                         <div class="row">
                           <div class="custom-control custom-radio">
-                            <input id="creditCardPaymentRadio" name="paymentType" type="radio" class="custom-control-input">
+                            <input id="creditCardPaymentRadio" name="paymentType" type="radio" class="custom-control-input" checked>
                             <label class="custom-control-label" for="creditCardPaymentRadio">Tarjeta de crédito</label>
                           </div>
                         </div>
@@ -179,14 +180,14 @@
                         <div class="row">
                           <div class="col-md-6 mb-3">
                             <label for="shippingStreetNumber">Número de tarjeta</label>
-                            <input type="number" class="form-control" id="creditCardNumber" placeholder="" value="" >
+                            <input type="number" class="form-control" id="creditCardNumber" placeholder="" required="" value="" >
                             <div class="invalid-feedback">
                               Ingresa un número de tarjeta
                             </div>
                           </div>
                           <div class="col-md-4 mb-3">
                             <label for="shippingStreetNumber">Código de seg.</label>
-                            <input type="number" class="form-control" id="creditCardSecurityCode" placeholder="" value="" >
+                            <input type="number" class="form-control" id="creditCardSecurityCode" placeholder="" required="" value="">
                             <div class="invalid-feedback">
                               Ingresa el código de seguridad
                             </div>
@@ -195,7 +196,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                               <label for="dueDate">Vencimiento (MM/AA)</label>
-                              <input type="number" class="form-control" id="dueDate" placeholder="" value="" >
+                              <input type="number" class="form-control" id="dueDate" placeholder="" value=""required="" >
                               <div class="invalid-feedback">
                                 Ingresa la fecha de vencimiento
                               </div>
@@ -211,7 +212,7 @@
                         <div class="row">
                           <div class="col-md-6 mb-3">
                             <label for="bankAccountNumber">Número de cuenta</label>
-                            <input type="number" class="form-control" id="bankAccountNumber" placeholder="" value="" >
+                            <input type="number" class="form-control" id="bankAccountNumber" placeholder="" value="" disabled>
                             <div class="invalid-feedback">
                               Ingresa un número de cuenta
                             </div>
