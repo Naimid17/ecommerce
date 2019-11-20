@@ -35,6 +35,20 @@ function updateSubtotal() {
     document.getElementById("subtotal").innerHTML = subtotal;
 
 }
+ /* var visa = "4(?:[0-9]{12}|[0-9]{15}";
+  var mastercard = "5[1-5][0-9]{14}"; 
+
+
+ function validar (){
+    document.getElementById("validarhd").addEventListener("click", function(){
+      numTarjeta= this.value
+   if (numTarjeta.match(visa)) {alert ("Selecciono VISA");}
+  if (mastercard ==="ok") {alert ("Selecciono MASTER");}
+ else return
+  {alert ("No trabajamos con esa tarjeta");}
+    });
+}*/
+
 function showPaymentTypeNotSelected() {
     var Credito = document.getElementById("creditCardPaymentRadio").checked;
     var Transferencia = document.getElementById("bankingRadio").checked;
@@ -130,25 +144,85 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById("bankingRadio").addEventListener("change", function () {
         showPaymentTypeNotSelected();
     });
+   
+   
+    document.getElementById("validarhd").addEventListener("click", function(e){
 
-    document.getElementById("buyBtn").addEventListener("click", function(){
-       var street = document.getElementById("streetName").value;
-       var pais = document.getElementById("Pais").value;
-       var calle = document.getElementById("calleNombre").value;
-       var numero = document.getElementById("Npuerta").value;
+        let productbankAccountNumber = document.getElementById("bankAccountNumber");
+        let productcreditCardNumber = document.getElementById("creditCardNumber");
+        let productcreditCardSecurityCode = document.getElementById("creditCardSecurityCode");
+        let productdueDate = document.getElementById("dueDate");
+        let infoMissing = false;
 
-    if(street === ""){
-           alert("Debes ingresar la calle de envío");
-       }
-   if(pais === ""){
-        alert("Debes ingresar pais de envío");
-    }
-    if(calle === ""){
-        alert("Debes ingresar la esquina de envío");
-    }
-    if(numero === ""){
-        alert("Debes ingresar el numeo de puerta");
-    }
+        productbankAccountNumber.classList.remove('is-invalid');
+        productcreditCardNumber.classList.remove('is-invalid');
+        productcreditCardSecurityCode.classList.remove('is-invalid');
+        productdueDate.classList.remove('is-invalid');
+
+        if (productbankAccountNumber.value >=0)
+        {
+            productbankAccountNumber.classList.add('is-invalid');
+            infoMissing = true;
+        }
+        if (productcreditCardNumber.value >=0)
+        {
+            productcreditCardNumber.classList.add('is-invalid');
+            infoMissing = true;
+        }
+
+        if (productcreditCardSecurityCode.value >=0)
+        {
+            productcreditCardSecurityCode.classList.add('is-invalid');
+            infoMissing = true;
+        }
+        if (productdueDate.value >=0)
+        {
+            productdueDate.classList.add('is-invalid');
+            infoMissing = true;
+        }
+        if(!infoMissing)
+                    {alert("Ingresar datos")}
+    });
+
+
+    document.getElementById("buyBtn").addEventListener("click", function(e){
+
+        let productstreet = document.getElementById("streetName");
+        let productpais = document.getElementById("Pais");
+        let productcalle = document.getElementById("calleNombre");
+        let productnumero = document.getElementById("Npuerta");
+        let infoMissing = false;
+
+        productstreet.classList.remove('is-invalid');
+        productpais.classList.remove('is-invalid');
+        productcalle.classList.remove('is-invalid');
+        productnumero.classList.remove('is-invalid');
+
+        if (productstreet.value === "")
+        {
+            productstreet.classList.add('is-invalid');
+            infoMissing = true;
+        }
+        
+        if (productpais.value === "")
+        {
+            productpais.classList.add('is-invalid');
+            infoMissing = true;
+        }
+
+        if (productcalle.value <=0)
+        {
+            productcalle.classList.add('is-invalid');
+            infoMissing = true;
+        }
+        if (productnumero.value <=0)
+        {
+            productnumero.classList.add('is-invalid');
+            infoMissing = true;
+        }
+        if(!infoMissing)
+    {alert("ingresar datos")}
+    });
 
     });
     document.getElementById("creditCardPaymentRadio").addEventListener("click", function () {
@@ -161,5 +235,4 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById("Metododepago").addEventListener("click", function () {
         document.getElementById ("pago").innerHTML = NOT_CREDIT_CARD_BANKING;
     });
-});
 
