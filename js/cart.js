@@ -35,20 +35,7 @@ function updateSubtotal() {
     document.getElementById("subtotal").innerHTML = subtotal;
 
 }
- /* var visa = "4(?:[0-9]{12}|[0-9]{15}";
-  var mastercard = "5[1-5][0-9]{14}"; 
-
-
- function validar (){
-    document.getElementById("validarhd").addEventListener("click", function(){
-      numTarjeta= this.value
-   if (numTarjeta.match(visa)) {alert ("Selecciono VISA");}
-  if (mastercard ==="ok") {alert ("Selecciono MASTER");}
- else return
-  {alert ("No trabajamos con esa tarjeta");}
-    });
-}*/
-
+ 
 function showPaymentTypeNotSelected() {
     var Credito = document.getElementById("creditCardPaymentRadio").checked;
     var Transferencia = document.getElementById("bankingRadio").checked;
