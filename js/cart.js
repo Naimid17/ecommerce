@@ -16,8 +16,9 @@ function updateTotalCosts() {
     let articlesubtotalHTML = document.getElementById("subtotalText");
     let comissionCostHTML = document.getElementById("comissionText");
     let totalCostHTML = document.getElementById("totalCostText");
-
+    alert(articlesubtotalHTML)
     let subtotalToShow = subtotal;
+    alert(subtotal)
     let comissionToShow = Math.round(((shippingPercentage * 100) * subtotal) / 100);
     let totalCostToShow = comissionToShow + subtotal;
 
@@ -42,16 +43,25 @@ function showPaymentTypeNotSelected() {
 
     if (Credito) {
         document.getElementById("bankAccountNumber").setAttribute("disabled", true);
+        document.getElementById("bankAccountNumber").classList.remove('is-invalid');
 
         document.getElementById("creditCardNumber").removeAttribute("disabled");
+        document.getElementById("creditCardNumber").classList.add('is-invalid');
         document.getElementById("creditCardSecurityCode").removeAttribute("disabled");
+        document.getElementById("creditCardSecurityCode").classList.add('is-invalid');
         document.getElementById("dueDate").removeAttribute("disabled");
+        document.getElementById("dueDate").classList.add('is-invalid');
+
     } else if (Transferencia) {
         document.getElementById("creditCardNumber").setAttribute("disabled", true);
+        document.getElementById("creditCardNumber").classList.remove('is-invalid');
         document.getElementById("creditCardSecurityCode").setAttribute("disabled", true);
+        document.getElementById("creditCardSecurityCode").classList.remove('is-invalid');
         document.getElementById("dueDate").setAttribute("disabled", true);
+        document.getElementById("dueDate").classList.remove('is-invalid');
 
         document.getElementById("bankAccountNumber").removeAttribute("disabled");
+        document.getElementById("bankAccountNumber").classList.add('is-invalid');
     }
 }
 
@@ -98,6 +108,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
             showArticles(resultObj.data.articles);
             articleunitCost = resultObj.data.articles[0].unitCost;
             articleCurrency = resultObj.data.articles[0].currency;
+          /*  let total = document.getElementById("totalCostText");
+            let comission = document.getElementById ("comissionText").value;
+            let subtotal = document.getElementById ("subtotal").value;
+
+            total.innerHTML = comission + subtotal;*/
             updateSubtotal();
             updateTotalCosts();
         }
@@ -132,45 +147,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
         showPaymentTypeNotSelected();
     });
    
-   
-    document.getElementById("validarhd").addEventListener("click", function(e){
-
-        let productbankAccountNumber = document.getElementById("bankAccountNumber");
-        let productcreditCardNumber = document.getElementById("creditCardNumber");
-        let productcreditCardSecurityCode = document.getElementById("creditCardSecurityCode");
-        let productdueDate = document.getElementById("dueDate");
-        let infoMissing = false;
-
-        productbankAccountNumber.classList.remove('is-invalid');
-        productcreditCardNumber.classList.remove('is-invalid');
-        productcreditCardSecurityCode.classList.remove('is-invalid');
-        productdueDate.classList.remove('is-invalid');
-
-        if (productbankAccountNumber.value >=0)
-        {
-            productbankAccountNumber.classList.add('is-invalid');
-            infoMissing = true;
-        }
-        if (productcreditCardNumber.value >=0)
-        {
-            productcreditCardNumber.classList.add('is-invalid');
-            infoMissing = true;
-        }
-
-        if (productcreditCardSecurityCode.value >=0)
-        {
-            productcreditCardSecurityCode.classList.add('is-invalid');
-            infoMissing = true;
-        }
-        if (productdueDate.value >=0)
-        {
-            productdueDate.classList.add('is-invalid');
-            infoMissing = true;
-        }
-        if(!infoMissing)
-                    {alert("Ingresar datos")}
-    });
-
 
     document.getElementById("buyBtn").addEventListener("click", function(e){
 
